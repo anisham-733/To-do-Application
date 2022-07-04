@@ -1,0 +1,97 @@
+<form class="form-horizontal form-group-lg">
+        
+        <label class="control-label col-xs-4" name="title">Enter the title of your task</label> 
+        <div class="col-xs-4">
+        <input name = "value_Title" class="form-control input-lg" [(ngModel)] = 'title' type="text">
+        </div>
+
+        
+        <label class = "control-label col-xs-4" name="desc">Enter the description</label>
+        <div class="col-xs-4">
+        <select name="optionv" class="form-control input-lg" [(ngModel)]="optionValue" (change)="updateData()">
+
+            <option name = "desc_value" *ngFor="let i of list; index as index">{{i}}</option>
+        </select>
+        </div>
+        </form>
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-xs-3">
+        <button class = "btn-primary" (click) = "add()">Add a task</button>
+        </div>
+        </div>
+        <br>
+      
+        <table  cellpadding = "20px" class="table table-bordered">
+            <tr><th>S.no</th>
+                <th>Title</th>
+            <th>description</th></tr>
+        <tr *ngFor="let row of arr; let i = index">
+            <td>{{i+1}}</td>
+            <td> {{row.title}} </td>
+            <td> {{row.description}} </td>
+            <td><button class="btn-primary" data-toggle="modal" data-target="#myModal" (click) = "edit(i)">Edit </button>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg" >
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                      <h4 class="modal-title">Edit your task</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input name = "value_Title" class="form-control input-lg" [(ngModel)] = 'new_title' value="" type="text">
+                        <select name="optionv" value = "" class="form-control input-lg" [(ngModel)]="new_description" (change)="updateData()">
+
+                            <option name = "desc_value"   *ngFor="let i of list; index as index">{{i}}</option>
+                        </select>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal" (click) = "close(arr.length-1)">Close</button>
+
+                      <!-- {{arr.title}} -->
+                      <!-- {{arr.description}} -->
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              </td>
+            <td> <button class =  "btn-primary" (click)="delete(i)">Delete</button> </td>
+        </tr>
+        </table> 
+        
+        
+        <!-- </div>
+         <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading" *ngFor="let row of arr; let i = index">{{row.title}}
+
+            </div>
+            <div class="panel-body"*ngFor="let row of arr; let i = index">{{row.description}}</div>
+          </div>
+          </div>
+  -->
+  <!-- <div *ngFor="let row of arr; let i = index;" 
+            class="row mt-1" style="height:100px;">
+  
+        <div class="col-3 d-none col-md-3 d-md-block"></div>
+  
+        <div class="col-12 col-md-6 bg-success d-flex
+                    justify-content-center align-items-center
+                    text-light h3">
+  
+            <div class="col-9 text-light h3">{{row.title}}</div>
+  
+            <input (click)="delete()" type="button"
+                value="Delete" class="col-2 btn btn-danger">
+        </div>
+          
+        <div class="col-3 d-none col-md-3 d-md-block"></div>
+    </div> -->
+
+    
+
+
+
